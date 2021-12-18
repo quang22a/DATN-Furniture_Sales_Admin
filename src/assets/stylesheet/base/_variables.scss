@@ -1,0 +1,30 @@
+$font-size: (
+  2xs: 8px,
+  xs: 10px,
+  s: 12px,
+  xm: 13px,
+  m: 14px,
+  l: 16px,
+  xl: 18px,
+  2xl: 20px,
+  3xl: 24px,
+  4xl: 32px,
+  5xl: 48px,
+  6xl: 72px,
+);
+$color: (
+  primary: #3f6679,
+  red: red,
+  green: green,
+  white: #ffffff,
+  text-black: #222222,
+  border-bottom: #eeeaea,
+  btn-disable: #eeeaea,
+  gray: #888888,
+  placeholder: #e0e0e0,
+);
+$colMax: 12;
+$screen-width: (
+  md: 768px,
+  lg: 1024px,
+);

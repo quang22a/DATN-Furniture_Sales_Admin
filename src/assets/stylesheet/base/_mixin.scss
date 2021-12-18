@@ -1,0 +1,64 @@
+@mixin respon($break-point) {
+  @if ($break-point == "") {
+    @content;
+  } @else {
+    @media (max-width: $break-point) {
+      @content;
+    }
+  }
+}
+@mixin columns-responsive(
+  $colMax,
+  $type-device,
+  $break-point,
+  $gutter-x,
+  $gutter-y
+) {
+  @include respon($break-point) {
+    @for $i from 1 through $colMax {
+      @if ($break-point == "") {
+        .col-#{$i} {
+          width: percentage($i/$colMax);
+          padding: $gutter-y $gutter-x;
+        }
+      } @else {
+        .col-#{$type-device}-#{$i} {
+          width: percentage($i/$colMax);
+          padding: $gutter-y $gutter-x;
+        }
+      }
+    }
+  }
+}
+@mixin mobile {
+  @media (max-width: map-get($screen-width, md)) {
+    @content;
+  }
+}
+@function convertPxToRem($px) {
+  @return 0rem + ($px / ($px * 0 + 1)) / 16;
+}
+@mixin pxRem($property, $valuePx) {
+  $px-value: ();
+  $rem-value: ();
+
+  @if type-of($valuePx) != "list" {
+    $value: join((), $valuePx);
+  }
+
+  @each $vl in $valuePx {
+    @if type-of($vl) == number and (unitless($vl) or unit($vl) == px) {
+      $px-value: join($px-value, 0px + ($vl));
+      $rem-value: join($rem-value, convertPxToRem($vl));
+    } @else {
+      $px-value: join($px-value, $vl);
+      $rem-value: join($rem-value, $vl);
+    }
+  }
+
+  #{$property}: $px-value;
+
+  @if $px-value != $rem-value {
+    #{$property}: $rem-value;
+  }
+}

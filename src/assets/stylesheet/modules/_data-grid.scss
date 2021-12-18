@@ -1,0 +1,40 @@
+.grid-data {
+  .status-switch {
+    display: flex;
+    padding: 7px;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(224, 224, 224, 1);
+  }
+  .title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .btn-edit {
+    padding: 5px;
+    font-size: map-get($font-size, m);
+    font-weight: 500;
+    text-transform: none;
+  }
+  .btn-delete {
+    padding: 5px;
+    font-size: map-get($font-size, m);
+    font-weight: 500;
+    background-color: red !important;
+    text-transform: none;
+    color: white;
+  }
+  .btn-primary {
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  th {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+  }
+  .img-item {
+    width: 50px;
+  }
+}

@@ -1,0 +1,19 @@
+.container {
+  max-width: 1150px;
+  width: 100%;
+  margin: 0 auto;
+}
+.row {
+  margin: 0 -20px;
+  flex-wrap: wrap;
+}
+@include columns-responsive($colMax, "", "", 20px, 0px);
+@include mobile {
+  @include columns-responsive(
+    $colMax,
+    md,
+    map-get($screen-width, md),
+    5px,
+    6px
+  );
+}

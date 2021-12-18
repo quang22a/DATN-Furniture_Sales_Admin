@@ -1,0 +1,42 @@
+.section-contact {
+  padding: 40px 0;
+  .contact {
+    display: flex;
+    .info {
+      width: 50%;
+      padding: 20px;
+      background-color: map-get($color, primary);
+      .title {
+        color: map-get($color, text-black);
+        h3 {
+          padding-bottom: 20px;
+          font-size: 40px;
+          font-weight: 600;
+        }
+        p {
+          padding-bottom: 26px;
+          font-size: 20px;
+        }
+      }
+      .form-contact {
+        .form-group {
+          width: 100%;
+          padding-bottom: 16px;
+        }
+        .msg {
+          margin-bottom: 20px;
+        }
+        .btn-contact {
+          float: right;
+          text-transform: uppercase;
+          background-color: black;
+          color: white;
+          font-size: 16px;
+        }
+      }
+    }
+    .img {
+      width: 50%;
+    }
+  }
+}

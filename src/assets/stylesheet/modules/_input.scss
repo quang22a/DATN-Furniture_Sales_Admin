@@ -1,0 +1,16 @@
+.form-control {
+  width: 100%;
+  font-size: 14px;
+  padding: 10px 10px;
+  background: map-get($color, white);
+  outline: none !important;
+  display: block;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  &::placeholder {
+    color: map-get($color, light-gray);
+  }
+}
+.hide-input {
+  display: none;
+}

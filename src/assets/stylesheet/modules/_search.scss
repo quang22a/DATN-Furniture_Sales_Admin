@@ -1,0 +1,19 @@
+.form-search {
+  width: 300px;
+  margin-bottom: 20px;
+  position: relative;
+  display: flex;
+  .form-group {
+    width: 100%;
+  }
+  .btn-search {
+    padding: 0;
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    :hover {
+      color: black;
+    }
+  }
+}

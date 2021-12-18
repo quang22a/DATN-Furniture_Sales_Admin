@@ -1,0 +1,66 @@
+#snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #b9f1bb;
+  color: #319436;
+  text-align: center;
+  border-radius: 5px;
+  padding: 8px;
+  position: fixed;
+  z-index: 1;
+  right: 50px;
+  top: 100px;
+  font-size: 17px;
+  text-transform: unset;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {
+    right: 0;
+    opacity: 0;
+  }
+  to {
+    right: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    right: 0;
+    opacity: 0;
+  }
+  to {
+    right: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    right: 30px;
+    opacity: 1;
+  }
+  to {
+    right: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    right: 30px;
+    opacity: 1;
+  }
+  to {
+    right: 0;
+    opacity: 0;
+  }
+}

@@ -1,0 +1,30 @@
+.form-row {
+  width: 500px;
+  .form-group {
+    margin-bottom: 20px;
+    label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    input {
+      font-size: 18px;
+    }
+  }
+  &.form-detail {
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+    p {
+      &:first-child {
+        width: 30%;
+        max-width: 130px;
+        font-size: 18px;
+      }
+      &:last-child {
+        font-size: 20px;
+        font-weight: 600;
+      }
+    }
+  }
+}

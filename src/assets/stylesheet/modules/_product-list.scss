@@ -1,0 +1,38 @@
+.product-group {
+  display: flex;
+  .product-item {
+    .product-item-description {
+      padding: 20px 10px 60px 10px;
+      color: map-get($color, text-black);
+      .product-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+        img {
+          object-fit: cover;
+        }
+      }
+      .product-body {
+        padding: 20px 0 10px 0;
+        text-align: center;
+        .product-name {
+          padding-bottom: 10px;
+          font-weight: 600;
+          font-size: 20px;
+        }
+        .product-price {
+          font-weight: 600;
+          font-size: 18px;
+          &::after {
+            content: " VNĐ";
+          }
+        }
+      }
+    }
+    &:hover {
+      transition: 0.3s;
+      box-shadow: #ddd 0px 0px 19px 8px;
+    }
+  }
+}
