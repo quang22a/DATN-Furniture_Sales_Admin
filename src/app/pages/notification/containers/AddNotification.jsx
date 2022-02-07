@@ -32,8 +32,8 @@ const AddNotification = () => {
       ...data,
       image,
     };
-    const socket = io.connect("http://localhost:8000");
-    // const socket = io.connect("https://datn-be.herokuapp.com");
+    // const socket = io.connect("http://localhost:8000");
+    const socket = io.connect("https://datn-be.herokuapp.com");
     socket.on("connect", () => {
       socket.emit("client-get-notifications", dataAdd);
     });
