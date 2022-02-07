@@ -5,6 +5,11 @@ import { useParams } from "react-router";
 import { getProductOfBill, getDetailBill } from "../stores/action";
 import { formatPrice } from "../../../shared/helpers/utils/formatPrice";
 
+const status = {
+  new: "Mới",
+  shipping: "Đang giao",
+  done: "Đã hoàn thành",
+};
 const BilDetail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -19,7 +24,7 @@ const BilDetail = () => {
     dispatch(getDetailBill(id));
     dispatch(getProductOfBill(id));
   }, []);
-
+  console.log(bill, listProduct);
   return (
     <section className="section-bill-detail">
       <div className="container">
@@ -72,21 +77,19 @@ const BilDetail = () => {
           </div>
           <div className="bill-info">
             <span className="left">Trạng thái đơn hàng</span>
-            <span className="right">
-              {bill?.status ? "Đã giao" : "Chưa giao"}
-            </span>
+            <span className="right">{status[bill?.status]}</span>
           </div>
           <ul className="list-product">
             {listProduct?.map((item, index) => (
               <li className="item-cart" key={index}>
                 <div className="img-product-cart">
-                  <img src={item.product[0].image} alt={item.product[0].name} />
+                  <img src={item.product[0].image} alt={item.productName} />
                 </div>
                 <div className="info-product-cart">
-                  <p className="name-product">{item.product[0].name}</p>
+                  <p className="name-product">{item.productName}</p>
                   <span className="quantity-product">x{item.quantity}</span>
                   <span className="price">
-                    {formatPrice(item.product[0].price || 0)}
+                    {formatPrice(item.price || 0)}
                   </span>
                 </div>
               </li>

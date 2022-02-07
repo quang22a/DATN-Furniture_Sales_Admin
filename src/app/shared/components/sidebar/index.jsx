@@ -7,12 +7,15 @@ const SideBar = () => {
   const location = useLocation();
   const [quantityNewBill, setQuantityNewBill] = useState(0);
   const socket = io.connect("http://localhost:8000");
+  // const socket = io.connect("https://datn-be.herokuapp.com");
 
   useEffect(() => {
     socket.on("connect", (data) => {
       socket.emit("client-create-bill", "");
     });
+    console.log("123");
     socket.on("server-notification-new-bill", (data) => {
+      console.log(data);
       setQuantityNewBill(parseInt(data));
     });
   }, []);

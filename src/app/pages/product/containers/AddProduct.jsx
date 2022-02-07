@@ -210,6 +210,20 @@ const AddProduct = () => {
           </div>
           <div className="form-row">
             <Input
+              type="text"
+              className="form-control"
+              label="Giảm giá"
+              placeholder="Nhập giảm giá"
+              id="discount"
+              validate={register("discount", {
+                required: "Bạn phải nhập giảm giá", min: { value: 0, message: "Phần trăm giảm giá phải lớn hơn hoặc bằng 0" }, max: { value: 100, message: "Phần trăm giảm giá phải nhỏ hơn hoặc bằng 100" },
+              })}
+              errors={errors.discount}
+              para=""
+            />
+          </div>
+          <div className="form-row">
+            <Input
               type="file"
               className="form-control"
               label=""

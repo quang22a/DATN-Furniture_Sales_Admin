@@ -99,6 +99,10 @@ const ProductDetail = () => {
                     checked={productDetail?.isActive}
                   />
                 </div>
+                <div className="form-row form-detail">
+                  <p>Giảm giá:</p>
+                  <p>{`${productDetail?.discount || 0}%`}</p>
+                </div>
                 <div className="action-profile action-edit">
                   <Link to="update" className="btn btn-primary">
                     Sửa

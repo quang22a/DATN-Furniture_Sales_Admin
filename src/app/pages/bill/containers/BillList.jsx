@@ -55,7 +55,6 @@ const BillList = () => {
     {
       id: "status",
       label: "Trạng thái",
-      type: "boolean",
       align: "center",
     },
     {
@@ -76,10 +75,10 @@ const BillList = () => {
     }
   }, [listBills]);
 
-  const changeStatus = async (_id, option) => {
+  const changeStatus = async (_id, value) => {
     const bill = dataShow?.find((item) => item._id === _id);
     const dataUpdate = {
-      customer: bill.customer,
+      customerId: bill.customerId,
       name: bill.name,
       email: bill.email,
       phone: bill.phone.toString(),
@@ -87,9 +86,8 @@ const BillList = () => {
       totalPrice: bill.totalPrice,
       totalProduct: bill.totalProduct,
       paymentMethod: bill.paymentMethod,
-      paymentStatus:
-        option === "paymentStatus" ? !bill.paymentStatus : bill.paymentStatus,
-      status: option === "status" ? !bill.status : bill.status,
+      paymentStatus: bill.paymentStatus,
+      status: value,
       additional: bill.additional,
     };
     if (!bill.additional) {
@@ -147,19 +145,32 @@ const BillList = () => {
                             ) {
                               value = convertDate(value);
                             }
-                            if (
-                              column.id === "status" ||
-                              column.id === "paymentStatus"
-                            ) {
+                            if (column.id === "status") {
+                              return (
+                                <TableCell key={column.id} align={column.align}>
+                                  <select
+                                    value={value}
+                                    onChange={(e) =>
+                                      changeStatus(row._id, e.target.value)
+                                    }
+                                  >
+                                    <option value="new">Mới</option>
+                                    <option value="shipping">Đang giao</option>
+                                    <option value="done">Đã hoàn thành</option>
+                                  </select>
+                                </TableCell>
+                              );
+                            }
+                            if (column.id === "paymentStatus") {
                               return (
                                 <TableCell key={column.id} align={column.align}>
                                   <Switch
                                     {...label}
                                     style={{ textAlign: "center" }}
                                     checked={value}
-                                    onChange={() =>
-                                      changeStatus(row._id, column.id)
-                                    }
+                                    // onChange={() =>
+                                    //   changeStatus(row._id, column.id)
+                                    // }
                                   />
                                 </TableCell>
                               );
