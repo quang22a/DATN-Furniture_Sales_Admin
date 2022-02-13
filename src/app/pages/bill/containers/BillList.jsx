@@ -75,7 +75,7 @@ const BillList = () => {
     }
   }, [listBills]);
 
-  const changeStatus = async (_id, value) => {
+  const changeStatus = async (_id, value, type) => {
     const bill = dataShow?.find((item) => item._id === _id);
     const dataUpdate = {
       customerId: bill.customerId,
@@ -86,8 +86,8 @@ const BillList = () => {
       totalPrice: bill.totalPrice,
       totalProduct: bill.totalProduct,
       paymentMethod: bill.paymentMethod,
-      paymentStatus: bill.paymentStatus,
-      status: value,
+      paymentStatus: type === 'payment' ? !bill.paymentStatus : bill.paymentStatus,
+      status:  type === 'status' ? value : bill.status,
       additional: bill.additional,
     };
     if (!bill.additional) {
@@ -151,7 +151,7 @@ const BillList = () => {
                                   <select
                                     value={value}
                                     onChange={(e) =>
-                                      changeStatus(row._id, e.target.value)
+                                      changeStatus(row._id, e.target.value, 'status')
                                     }
                                   >
                                     <option value="new">Mới</option>
@@ -168,9 +168,9 @@ const BillList = () => {
                                     {...label}
                                     style={{ textAlign: "center" }}
                                     checked={value}
-                                    // onChange={() =>
-                                    //   changeStatus(row._id, column.id)
-                                    // }
+                                    onChange={() =>
+                                      changeStatus(row._id, '', 'payment')
+                                    }
                                   />
                                 </TableCell>
                               );

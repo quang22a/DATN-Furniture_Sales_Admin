@@ -12,6 +12,7 @@ import {
 import { Bar } from "react-chartjs-2";
 
 import { getRevenue } from "./stores/action";
+import OverView from './components/Overview';
 
 ChartJS.register(
   CategoryScale,
@@ -93,6 +94,9 @@ const RevenuePage = () => {
           })}
         </select>
         <Bar options={options} data={data} />
+      </div>
+      <div className="container">
+        <OverView />
       </div>
     </section>
   );
