@@ -24,10 +24,9 @@ export const getRevenue = (data) => async (dispatch) => {
   }
 };
 
-export const getRevenueDetail = (month, year, page) => async (dispatch) => {
+export const getRevenueDetail = (month, year) => async (dispatch) => {
   try {
-    console.log(month,year)
-    const response = await http.get([`${ENDPOINT.revenue}-table?month=${month}&year=${year}&page=${page}`]);
+    const response = await http.get([`${ENDPOINT.revenue}-table?month=${month}&year=${year}`]);
     dispatch({
       type: types.GET_REVENUE_DETAIL_SUCCESS,
       payload: response,

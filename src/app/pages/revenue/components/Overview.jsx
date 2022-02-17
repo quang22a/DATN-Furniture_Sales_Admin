@@ -14,7 +14,7 @@ import { getRevenueDetail } from '../stores/action';
 const OverView = () => {
   const dispatch = useDispatch();
   const [year, setYear] = useState(new Date().getFullYear());
-  const [month, setMonth] = useState(new Date().getMonth());
+  const [month, setMonth] = useState((new Date().getMonth()) - 1);
 
   const d = new Date();
 
@@ -38,13 +38,8 @@ const OverView = () => {
   const dataOverview = useSelector((state) => state.revenueReducer.dataDetail);
 
   useEffect(() => {
-    console.log('12: ', year, month)
-    dispatch(getRevenueDetail(month, year, 1));
+    dispatch(getRevenueDetail(month, year));
   }, [year, month])
-
-  useEffect(() => {
-    console.log('data: ', dataOverview)
-  }, [dataOverview])
 
   return (
     <div className="overview-revenue grid-data">
