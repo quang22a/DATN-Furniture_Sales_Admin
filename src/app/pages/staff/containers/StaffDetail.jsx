@@ -28,7 +28,7 @@ const StaffDetail = () => {
   return (
     <section className="section-profile">
       <div className="container">
-        <p className="title-profile">Cập nhật thông tin nhân viên</p>
+        <p className="title-profile">Thông tin nhân viên</p>
         {staffDetail && isData ? (
           <div className="profile">
             <div className="form-row form-detail">

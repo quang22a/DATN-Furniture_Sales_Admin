@@ -125,14 +125,12 @@ const NotificationList = () => {
                                 >
                                   Chi tiết
                                 </Link>
-                                {role && role === "admin" && (
-                                  <button
-                                    className="btn btn-delete"
-                                    onClick={() => deleteNot(row._id)}
-                                  >
-                                    Xóa
-                                  </button>
-                                )}
+                                <button
+                                  className="btn btn-delete"
+                                  onClick={() => deleteNot(row._id)}
+                                >
+                                  Xóa
+                                </button>
                               </TableCell>
                             );
                           }

@@ -93,9 +93,6 @@ const CustomerList = () => {
     <section className="section-category-list grid-data">
       <div className="container">
         <p className="title">Khách hàng</p>
-        <Link to="/categories/add-category" className="btn btn-primary">
-          Thêm
-        </Link>
         <Search setSearch={setSearch} placeholder="khách hàng" />
         {dataShow ? (
           <Paper sx={{ width: "100%" }}>
@@ -143,7 +140,7 @@ const CustomerList = () => {
                               </TableCell>
                             );
                           }
-                          if (column.id === "action" && role === "admin") {
+                          if (column.id === "action") {
                             return (
                               <TableCell key={column.id} align={column.align}>
                                 <Link
@@ -152,12 +149,15 @@ const CustomerList = () => {
                                 >
                                   Chi tiết
                                 </Link>
-                                <button
-                                  className="btn btn-delete"
-                                  onClick={() => deleteCus(row._id)}
-                                >
-                                  Xóa
-                                </button>
+                                {role && role === 'admin' && (
+                                  <button
+                                    className="btn btn-delete"
+                                    onClick={() => deleteCus(row._id)}
+                                  >
+                                    Xóa
+                                  </button>
+                                )}
+                                
                               </TableCell>
                             );
                           }

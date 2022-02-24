@@ -23,7 +23,7 @@ const BillList = () => {
   const [page, setPage] = useState(1);
   const [dataShow, setDataShow] = useState();
   const [search, setSearch] = useState("");
-
+  const role = JSON.parse(localStorage.getItem("userInfo"))?.role;
   const listBills = useSelector((state) => state.billReducer.listBills);
 
   const columns = [
@@ -106,9 +106,6 @@ const BillList = () => {
     <section className="section-product-list grid-data">
       <div className="container">
         <p className="title">Hóa đơn</p>
-        <Link to="/bills/add-bill" className="btn btn-primary">
-          Thêm
-        </Link>
         <Search setSearch={setSearch} placeholder="hóa đơn" />
         {dataShow ? (
           <Paper sx={{ width: "100%" }}>
@@ -196,12 +193,15 @@ const BillList = () => {
                                   >
                                     Chi tiết
                                   </Link>
-                                  <button
-                                    className="btn btn-delete"
-                                    onClick={() => deletePr(row._id)}
-                                  >
-                                    Xóa
-                                  </button>
+                                  {
+                                    role && role === 'admin' && <button
+                                      className="btn btn-delete"
+                                      onClick={() => deletePr(row._id)}
+                                    >
+                                      Xóa
+                                    </button>
+                                  }
+                                  
                                 </TableCell>
                               );
                             }

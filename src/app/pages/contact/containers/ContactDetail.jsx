@@ -34,7 +34,7 @@ const ContactDetail = () => {
   return (
     <section className="section-profile">
       <div className="container">
-        <p className="title-profile">Chi tiết danh mục</p>
+        <p className="title-profile">Chi tiết liên hệ</p>
         {contactDetail && isData ? (
           <div className="profile">
             <div className="form-row form-detail">
@@ -48,6 +48,10 @@ const ContactDetail = () => {
             <div className="form-row form-detail">
               <p>Địa chỉ email:</p>
               <p>{contactDetail?.email}</p>
+            </div>
+            <div className="form-row form-detail">
+              <p>Nội dung:</p>
+              <p>{contactDetail?.msg}</p>
             </div>
             <div className="form-row form-detail">
               <p>Trạng thái:</p>

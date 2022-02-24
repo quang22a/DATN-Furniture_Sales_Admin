@@ -134,7 +134,11 @@ const StaffList = () => {
                                   {...label}
                                   style={{ textAlign: "center" }}
                                   checked={value}
-                                  onChange={() => updateActive(row._id)}
+                                  onChange={() => {
+                                    if (role && role === 'admin') {
+                                      updateActive(row._id)
+                                    }                                 
+                                  }}
                                 />
                               </TableCell>
                             );
