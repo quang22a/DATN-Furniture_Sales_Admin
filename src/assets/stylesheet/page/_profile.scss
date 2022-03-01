@@ -34,6 +34,16 @@
       font-size: 18px;
       font-weight: 500;
     }
+    &.form-email {
+      margin-bottom: 20px;
+      p {
+        font-size: 18px;
+        span {
+          float: right;
+          font-weight: bold;
+        }
+      }
+    }
   }
   .action-profile {
     margin-top: 20px;

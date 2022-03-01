@@ -22,7 +22,7 @@ import { convertDate } from "../../../shared/helpers/utils/convertDate";
 
 const NotificationList = () => {
   const dispatch = useDispatch();
-  const role = JSON.parse(localStorage.getItem("userInfo"))?.role;
+  
   const [page, setPage] = useState(1);
   const [dataShow, setDataShow] = useState();
   const [search, setSearch] = useState("");

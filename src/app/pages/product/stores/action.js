@@ -1,16 +1,25 @@
 import * as types from "./types";
 import { ApiService } from "../../../core/services/api.service";
 import { ENDPOINT } from "../../../../config/endpoint";
+import { setModal } from "../../../stores/modal/action";
 
 const http = new ApiService();
 
-export const addProduct = (data) => async (dispatch) => {
+export const addProduct = (data, navigate) => async (dispatch) => {
   try {
     const response = await http.post([ENDPOINT.product.index], data);
     dispatch({
       type: types.ADD_NEW_PRODUCT_SUCCESS,
       payload: response,
     });
+    dispatch(
+      setModal({
+        key: "snapback",
+        title: "",
+        content: "Thêm thành công",
+      })
+    );
+    navigate("/products");
   } catch (error) {
     dispatch({
       type: types.ADD_NEW_PRODUCT_FAIL,

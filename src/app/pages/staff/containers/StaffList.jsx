@@ -23,8 +23,6 @@ const StaffList = () => {
   const [dataShow, setDataShow] = useState();
   const [search, setSearch] = useState("");
 
-  const role = JSON.parse(localStorage.getItem("userInfo"))?.role;
-
   const listStaffs = useSelector((state) => state.staffReducer.dataList);
 
   const columns = [
@@ -87,11 +85,9 @@ const StaffList = () => {
     <section className="section-staff-list grid-data">
       <div className="container">
         <p className="title">Nhân viên</p>
-        {role === "admin" && (
-          <Link to="/staffs/add-staff" className="btn btn-primary">
-            Thêm
-          </Link>
-        )}
+        <Link to="/staffs/add-staff" className="btn btn-primary">
+          Thêm
+        </Link>
         <Search setSearch={setSearch} placeholder="nhân viên" />
         {dataShow ? (
           <Paper sx={{ width: "100%" }}>
@@ -135,15 +131,13 @@ const StaffList = () => {
                                   style={{ textAlign: "center" }}
                                   checked={value}
                                   onChange={() => {
-                                    if (role && role === 'admin') {
-                                      updateActive(row._id)
-                                    }                                 
+                                      updateActive(row._id)                               
                                   }}
                                 />
                               </TableCell>
                             );
                           }
-                          if (column.id === "action" && role === "admin") {
+                          if (column.id === "action") {
                             return (
                               <TableCell key={column.id} align={column.align}>
                                 <Link

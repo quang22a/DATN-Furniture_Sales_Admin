@@ -6,7 +6,7 @@ const ListComment = ({ data }) => {
           <ul className="list-comment">
             {data.map((item, index) => (
               <li className="item-comment" key={index}>
-                <p className="comment-user">{item.customerInfo?.name}</p>
+                <p className="comment-user">{item.customer[0]?.name}</p>
                 <div>
                   {[...Array(item.rating)].map((item1, index1) => (
                     // <i className="far fa-star active" key={index1}></i>

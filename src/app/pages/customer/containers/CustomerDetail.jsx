@@ -10,7 +10,7 @@ import Switch from "@mui/material/Switch";
 const CustomerDetail = () => {
   const [isData, setIsData] = useState(false);
   const { id } = useParams();
-  const role = JSON.parse(localStorage.getItem("userInfo"))?.role;
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -58,12 +58,9 @@ const CustomerDetail = () => {
               />
             </div>
             <div className="action-edit">
-              {
-                role && role === 'admin' && <Link to="update" className="btn btn-primary">
-                  Sửa
-                </Link>
-              }
-              
+              <Link to="update" className="btn btn-primary">
+                Sửa
+              </Link>
               <button className="btn btn-black" onClick={() => navigate(-1)}>
                 Quay lại
               </button>

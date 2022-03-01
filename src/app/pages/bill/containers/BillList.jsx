@@ -23,7 +23,7 @@ const BillList = () => {
   const [page, setPage] = useState(1);
   const [dataShow, setDataShow] = useState();
   const [search, setSearch] = useState("");
-  const role = JSON.parse(localStorage.getItem("userInfo"))?.role;
+
   const listBills = useSelector((state) => state.billReducer.listBills);
 
   const columns = [
@@ -193,15 +193,12 @@ const BillList = () => {
                                   >
                                     Chi tiết
                                   </Link>
-                                  {
-                                    role && role === 'admin' && <button
-                                      className="btn btn-delete"
-                                      onClick={() => deletePr(row._id)}
-                                    >
-                                      Xóa
-                                    </button>
-                                  }
-                                  
+                                  <button
+                                    className="btn btn-delete"
+                                    onClick={() => deletePr(row._id)}
+                                  >
+                                    Xóa
+                                  </button>
                                 </TableCell>
                               );
                             }

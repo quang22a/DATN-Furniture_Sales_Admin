@@ -6,9 +6,9 @@ import { io } from "socket.io-client";
 const SideBar = () => {
   const location = useLocation();
   const [quantityNewBill, setQuantityNewBill] = useState(0);
-  // const socket = io.connect("http://localhost:8000");
-  const socket = io.connect("https://datn-be.herokuapp.com");
-
+  const socket = io.connect("http://localhost:8000");
+  // const socket = io.connect("https://datn-be.herokuapp.com");
+  const role = JSON.parse(localStorage.getItem("userInfo"))?.role;
   useEffect(() => {
     socket.on("connect", (data) => {
       socket.emit("client-create-bill", "");
@@ -72,16 +72,18 @@ const SideBar = () => {
             Thông báo
           </Link>
         </div>
-        <div
-          className={`sidebar-option ${
-            location.pathname.indexOf("/staffs") !== -1 ? "active" : ""
-          }`}
-        >
-          <i className="fas fa-user"></i>
-          <Link to="/staffs" className="btn btn-outline">
-            Nhân viên
-          </Link>
-        </div>
+        {role && role === 'admin' && (
+          <div
+            className={`sidebar-option ${
+              location.pathname.indexOf("/staffs") !== -1 ? "active" : ""
+            }`}
+          >
+            <i className="fas fa-user"></i>
+            <Link to="/staffs" className="btn btn-outline">
+              Nhân viên
+            </Link>
+          </div>
+        )}
         <div
           className={`sidebar-option ${
             location.pathname.indexOf("/customers") !== -1 ? "active" : ""
@@ -113,16 +115,18 @@ const SideBar = () => {
             Liên hệ
           </Link>
         </div>
-        <div
-          className={`sidebar-option ${
-            location.pathname.indexOf("/revenue") !== -1 ? "active" : ""
-          }`}
-        >
-          <i className="fas fa-chart-line"></i>
-          <Link to="/revenue" className="btn btn-outline">
-            Thống kê
-          </Link>
-        </div>
+        {role && role === 'admin' && (
+          <div
+            className={`sidebar-option ${
+              location.pathname.indexOf("/revenue") !== -1 ? "active" : ""
+            }`}
+          >
+            <i className="fas fa-chart-line"></i>
+            <Link to="/revenue" className="btn btn-outline">
+              Thống kê
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

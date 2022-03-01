@@ -22,7 +22,6 @@ const ProductList = () => {
   const [page, setPage] = useState(1);
   const [dataShow, setDataShow] = useState();
   const [search, setSearch] = useState("");
-  const role = JSON.parse(localStorage.getItem("userInfo"))?.role;
 
   const listProducts = useSelector((state) => state.productReducer.dataList);
 
@@ -168,14 +167,12 @@ const ProductList = () => {
                                   >
                                     Chi tiết
                                   </Link>
-                                  {role && role === "admin" && (
-                                    <button
-                                      className="btn btn-delete"
-                                      onClick={() => deletePr(row._id)}
-                                    >
-                                      Xóa
-                                    </button>
-                                  )}
+                                  <button
+                                    className="btn btn-delete"
+                                    onClick={() => deletePr(row._id)}
+                                  >
+                                    Xóa
+                                  </button>
                                 </TableCell>
                               );
                             }

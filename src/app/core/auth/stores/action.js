@@ -1,10 +1,10 @@
 import * as types from "./types";
 import { AuthService } from "../../services/auth.service";
-import { ENDPOINT } from "../../../../config/endpoint";
+import { setModal } from "../../../stores/modal/action";
 
 const http = new AuthService();
 
-export const login = (dataLogin) => async (dispatch) => {
+export const login = (dataLogin, navigate) => async (dispatch) => {
   try {
     let response;
     if (dataLogin.email === "admin@gmail.com") {
@@ -16,10 +16,18 @@ export const login = (dataLogin) => async (dispatch) => {
     } else {
       response = await http.signIn(dataLogin);
     }
+    dispatch(
+      setModal({
+        key: "snapback",
+        title: "",
+        content: "Đăng nhập thành công",
+      })
+    );
     dispatch({
       type: types.LOGIN_SUCCESS,
       payload: response,
     });
+    navigate('/');
   } catch (error) {
     dispatch({
       type: types.LOGIN_FAIL,

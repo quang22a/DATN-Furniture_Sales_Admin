@@ -22,7 +22,7 @@ import { convertDate } from "../../../shared/helpers/utils/convertDate";
 
 const CategoryList = () => {
   const dispatch = useDispatch();
-  const role = JSON.parse(localStorage.getItem("userInfo"))?.role;
+  
   const [page, setPage] = useState(1);
   const [dataShow, setDataShow] = useState();
   const [search, setSearch] = useState("");
@@ -150,14 +150,12 @@ const CategoryList = () => {
                                 >
                                   Chi tiết
                                 </Link>
-                                {role && role === "admin" && (
-                                  <button
-                                    className="btn btn-delete"
-                                    onClick={() => deleteCate(row._id)}
-                                  >
-                                    Xóa
-                                  </button>
-                                )}
+                                <button
+                                  className="btn btn-delete"
+                                  onClick={() => deleteCate(row._id)}
+                                >
+                                  Xóa
+                                </button>
                               </TableCell>
                             );
                           }

@@ -5,7 +5,6 @@ import { ErrorMsg } from "../../../shared/components/partials/ErrorMsg";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
-import { setModal } from "../../../stores/modal/action";
 import { addProduct } from "../stores/action";
 import { getListBrandNotPag } from "../../brand/stores/action";
 import { getListCategoryNotPag } from "../../category/stores/action";
@@ -21,7 +20,6 @@ const AddProduct = () => {
     handleSubmit,
   } = useForm();
   const [image, setImage] = useState(null);
-  const [isSubmit, setIsSubmit] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -29,7 +27,6 @@ const AddProduct = () => {
     (state) => state.categoryReducer.dataListNotPag
   );
   const listBrands = useSelector((state) => state.brandReducer.dataListNotPag);
-  const error = useSelector((state) => state.productReducer.errorAdd);
 
   useEffect(() => {
     dispatch(getListCategoryNotPag());
@@ -46,23 +43,8 @@ const AddProduct = () => {
     if (!dataAddProduct.description) {
       delete dataAddProduct.description;
     }
-    await dispatch(addProduct(dataAddProduct));
-    setIsSubmit(true);
+    dispatch(addProduct(dataAddProduct, navigate));
   };
-
-  useEffect(() => {
-    if (!error && isSubmit) {
-      dispatch(
-        setModal({
-          key: "snapback",
-          title: "",
-          content: "Thêm thành công",
-        })
-      );
-      navigate("/products");
-    }
-    setIsSubmit(false);
-  }, [isSubmit]);
 
   const uploadImage = (e) => {
     if (e.target.files[0]) {

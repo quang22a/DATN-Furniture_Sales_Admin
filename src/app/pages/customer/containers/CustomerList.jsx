@@ -27,8 +27,6 @@ const CustomerList = () => {
   const [dataShow, setDataShow] = useState();
   const [search, setSearch] = useState("");
 
-  const role = JSON.parse(localStorage.getItem("userInfo"))?.role;
-
   const listCustomers = useSelector((state) => state.customerReducer.dataList);
 
   const columns = [
@@ -149,15 +147,12 @@ const CustomerList = () => {
                                 >
                                   Chi tiết
                                 </Link>
-                                {role && role === 'admin' && (
-                                  <button
-                                    className="btn btn-delete"
-                                    onClick={() => deleteCus(row._id)}
-                                  >
-                                    Xóa
-                                  </button>
-                                )}
-                                
+                                <button
+                                  className="btn btn-delete"
+                                  onClick={() => deleteCus(row._id)}
+                                >
+                                  Xóa
+                                </button>
                               </TableCell>
                             );
                           }
