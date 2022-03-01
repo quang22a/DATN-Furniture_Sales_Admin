@@ -9,7 +9,6 @@ const ListComment = ({ data }) => {
                 <p className="comment-user">{item.customer[0]?.name}</p>
                 <div>
                   {[...Array(item.rating)].map((item1, index1) => (
-                    // <i className="far fa-star active" key={index1}></i>
                     <span
                       className="material-icons-outlined icon-star"
                       key={index1}
