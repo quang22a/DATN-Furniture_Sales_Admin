@@ -12,9 +12,36 @@
       text-align: left;
     }
     .select-time {
+      display: flex;
       margin-bottom: 20px;
-      select {
-        outline: none;
+      .option-time {
+        margin-right: 30px;
+        p {
+          padding-bottom: 10px;
+          color: rgba(0, 0, 0, 0.87);
+        }
+        .react-datepicker-wrapper,
+        .react-datepicker__input-container,
+        input {
+          outline: none;
+        }
+        .react-datepicker-popper {
+          z-index: 99;
+        }
+      }
+    }
+    .total {
+      margin-bottom: 20px;
+      width: 200px;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.04);
+      border-radius: 5px;
+      p {
+        font-size: 24px;
+        &.price {
+          margin-top: 20px;
+          font-weight: bold;
+        }
       }
     }
   }

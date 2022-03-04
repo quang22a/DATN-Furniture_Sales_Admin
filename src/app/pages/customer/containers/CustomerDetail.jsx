@@ -28,9 +28,9 @@ const CustomerDetail = () => {
   }, []);
 
   return (
-    <section className="section-profile">
+    <section className="section-profile section-detail">
       <div className="container">
-        <p className="title-profile">Thông tin khách hàng</p>
+        <p className="title-profile text-uppercase">Thông tin khách hàng</p>
         {customerDetail && isData ? (
           <div className="profile">
             <div className="form-row form-detail">

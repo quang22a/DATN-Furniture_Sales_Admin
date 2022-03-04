@@ -69,9 +69,9 @@ const UpdateCustomer = () => {
   }, [isSubmit]);
 
   return (
-    <section className="section-profile">
+    <section className="section-profile section-detail">
       <div className="container">
-        <p className="title-profile">Cập nhật thông tin khách hàng</p>
+        <p className="title-profile text-uppercase">Cập nhật thông tin khách hàng</p>
         {customerDetail && isData ? (
           <form className="profile" onSubmit={handleSubmit(onSubmit)}>
             <div className="form-row form-detail">

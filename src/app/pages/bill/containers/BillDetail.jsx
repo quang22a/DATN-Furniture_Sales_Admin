@@ -54,7 +54,7 @@ const BilDetail = () => {
           </div>
           <div className="bill-info">
             <span className="left">Tổng tiền</span>
-            <span className="right">{bill?.totalPrice}</span>
+            <span className="right">{formatPrice(bill?.totalPrice)}</span>
           </div>
           <div className="bill-info">
             <span className="left">Phương thức thanh toán</span>

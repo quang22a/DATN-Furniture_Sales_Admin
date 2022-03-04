@@ -103,7 +103,7 @@ const UpdateProduct = () => {
   return (
     <section className="section-product-detail">
       <div className="container">
-        <p className="title">Sửa thông tin sản phẩm</p>
+        <p className="title text-uppercase">Sửa thông tin sản phẩm</p>
         {isData && listCategories && listBrands ? (
           <>
             <form

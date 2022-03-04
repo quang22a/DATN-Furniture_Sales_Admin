@@ -79,7 +79,7 @@ const RevenuePage = () => {
   return (
     <section className="revenue">
       <div className="container">
-        <p className="title">Thống kê doanh thu</p>
+        <p className="title text-uppercase">Thống kê doanh thu</p>
         <select
           name="year"
           id="year"

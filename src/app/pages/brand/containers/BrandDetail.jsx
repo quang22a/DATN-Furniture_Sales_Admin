@@ -28,7 +28,7 @@ const BrandDetail = () => {
   return (
     <section className="section-product-detail">
       <div className="container">
-        <p className="title">Chi tiết thương hiệu</p>
+        <p className="title text-uppercase">Chi tiết thương hiệu</p>
         {brandDetail && isData ? (
           <div className="product-detail row">
             <div className="col-6 product-detail-img">

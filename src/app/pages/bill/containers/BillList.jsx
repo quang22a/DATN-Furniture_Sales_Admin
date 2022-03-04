@@ -16,6 +16,7 @@ import Pagination from "@mui/material/Pagination";
 import { Search } from "../../../shared/components/search";
 import { getBills, updateBill, deleteBill } from "../stores/action";
 import { convertDate } from "../../../shared/helpers/utils/convertDate";
+import { formatPrice } from '../../../shared/helpers/utils/formatPrice';
 
 const BillList = () => {
   const dispatch = useDispatch();
@@ -105,11 +106,11 @@ const BillList = () => {
   return (
     <section className="section-product-list grid-data">
       <div className="container">
-        <p className="title">Hóa đơn</p>
+        <p className="title text-uppercase">Hóa đơn</p>
         <Search setSearch={setSearch} placeholder="hóa đơn" />
         {dataShow ? (
           <Paper sx={{ width: "100%" }}>
-            <TableContainer sx={{ maxHeight: 400 }}>
+            <TableContainer sx={{  }}>
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                   <TableRow>
@@ -117,7 +118,7 @@ const BillList = () => {
                       <TableCell
                         key={column.id}
                         align={column.align}
-                        style={{ minWidth: column.minWidth }}
+                        style={{ minWidth: column.minWidth, backgroundColor: '#022d42', color: 'white' }}
                       >
                         {column.label}
                       </TableCell>
@@ -126,13 +127,14 @@ const BillList = () => {
                 </TableHead>
                 <TableBody>
                   {dataShow &&
-                    dataShow.map((row) => {
+                    dataShow.map((row, index) => {
                       return (
                         <TableRow
                           hover
                           role="checkbox"
                           tabIndex={-1}
                           key={row._id}
+                          style={{ backgroundColor: index % 2 === 0 ? 'rgba(0, 0, 0, 0.04)' : 'white' }}
                         >
                           {columns.map((column) => {
                             let value = row[column.id];
@@ -204,7 +206,7 @@ const BillList = () => {
                             }
                             return (
                               <TableCell key={column.id} align={column.align}>
-                                {value}
+                                {column.id === 'totalPrice' ? formatPrice(value) : value}
                               </TableCell>
                             );
                           })}

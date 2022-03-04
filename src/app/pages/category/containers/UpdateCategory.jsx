@@ -96,7 +96,7 @@ const UpdateCategory = () => {
   return (
     <section className="section-product-detail">
       <div className="container">
-        <p className="title">Sửa thông tin danh mục</p>
+        <p className="title text-uppercase">Sửa thông tin danh mục</p>
         {categoryDetail && isData ? (
           <form
             className="product-detail row"

@@ -72,7 +72,7 @@ const AddCategory = () => {
   };
 
   return (
-    <div className="section-profile">
+    <div className="section-profile section-detail">
       <div className="container">
         <form className="profile" onSubmit={handleSubmit(onSubmit)}>
           <p className="text-uppercase title-profile">Thêm danh mục</p>

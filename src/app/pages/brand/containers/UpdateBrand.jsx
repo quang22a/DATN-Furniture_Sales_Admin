@@ -89,7 +89,7 @@ const UpdateBrand = () => {
   return (
     <section className="section-product-detail">
       <div className="container">
-        <p className="title">Sửa thông tin thương hiệu</p>
+        <p className="title text-uppercase">Sửa thông tin thương hiệu</p>
         {brandDetail && isData ? (
           <form
             className="product-detail row"

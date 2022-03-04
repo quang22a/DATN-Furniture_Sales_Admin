@@ -43,7 +43,7 @@ const ProductDetail = () => {
   return (
     <section className="section-product-detail">
       <div className="container">
-        <p className="title">Chi tiết sản phẩm</p>
+        <p className="title text-uppercase">Chi tiết sản phẩm</p>
         {productDetail && isData && listCategories && listBrands ? (
           <>
             <div className="product-detail row">

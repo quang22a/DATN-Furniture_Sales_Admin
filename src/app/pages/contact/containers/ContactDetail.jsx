@@ -32,9 +32,9 @@ const ContactDetail = () => {
   };
 
   return (
-    <section className="section-profile">
+    <section className="section-profile section-detail">
       <div className="container">
-        <p className="title-profile">Chi tiết liên hệ</p>
+        <p className="title-profile text-uppercase">Chi tiết liên hệ</p>
         {contactDetail && isData ? (
           <div className="profile">
             <div className="form-row form-detail">

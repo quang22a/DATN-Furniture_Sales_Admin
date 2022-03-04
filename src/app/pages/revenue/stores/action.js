@@ -24,9 +24,9 @@ export const getRevenue = (data) => async (dispatch) => {
   }
 };
 
-export const getRevenueDetail = (month, year) => async (dispatch) => {
+export const getRevenueDetail = (dateStart, dateEnd) => async (dispatch) => {
   try {
-    const response = await http.get([`${ENDPOINT.revenue}-table?month=${month}&year=${year}`]);
+    const response = await http.get([`${ENDPOINT.revenue}-table?dateStart=${JSON.stringify(dateStart)}&dateEnd=${JSON.stringify(dateEnd)}`]);
     dispatch({
       type: types.GET_REVENUE_DETAIL_SUCCESS,
       payload: response,

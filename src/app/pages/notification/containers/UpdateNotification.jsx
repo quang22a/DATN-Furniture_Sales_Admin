@@ -91,6 +91,7 @@ const NotificationDetail = () => {
   return (
     <section className="section-product-detail">
       <div className="container">
+        <p className="title text-uppercase">Sửa thông tin sản phẩm</p>
         {notificationDetail && isData ? (
           <form
             className="product-detail row"

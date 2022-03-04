@@ -90,11 +90,11 @@ const CustomerList = () => {
   return (
     <section className="section-category-list grid-data">
       <div className="container">
-        <p className="title">Khách hàng</p>
+        <p className="title text-uppercase">Khách hàng</p>
         <Search setSearch={setSearch} placeholder="khách hàng" />
         {dataShow ? (
           <Paper sx={{ width: "100%" }}>
-            <TableContainer sx={{ maxHeight: 440 }}>
+            <TableContainer sx={{  }}>
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                   <TableRow>
@@ -102,7 +102,7 @@ const CustomerList = () => {
                       <TableCell
                         key={column.id}
                         align={column.align}
-                        style={{ minWidth: column.minWidth }}
+                        style={{ minWidth: column.minWidth, backgroundColor: '#022d42', color: 'white' }}
                       >
                         {column.label}
                       </TableCell>
@@ -110,13 +110,14 @@ const CustomerList = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {dataShow.map((row) => {
+                  {dataShow.map((row, index) => {
                     return (
                       <TableRow
                         hover
                         role="checkbox"
                         tabIndex={-1}
                         key={row._id}
+                        style={{ backgroundColor: index % 2 === 0 ? 'rgba(0, 0, 0, 0.04)' : 'white' }}
                       >
                         {columns.map((column) => {
                           let value = row[column.id];

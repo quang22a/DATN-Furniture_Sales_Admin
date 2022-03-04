@@ -28,6 +28,7 @@ const NotificationDetail = () => {
   return (
     <section className="section-product-detail">
       <div className="container">
+      <p className="title text-uppercase">Thông báo</p>
         {notificationDetail && isData ? (
           <div className="product-detail row">
             <div className="col-6 product-detail-img">

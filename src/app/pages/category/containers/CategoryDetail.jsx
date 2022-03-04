@@ -30,7 +30,7 @@ const CategoryDetail = () => {
   return (
     <section className="section-product-detail">
       <div className="container">
-        <p className="title">Chi tiết danh mục</p>
+        <p className="title text-uppercase">Chi tiết danh mục</p>
         {categoryDetail && isData ? (
           <div className="product-detail row">
             <div className="col-6 product-detail-img">

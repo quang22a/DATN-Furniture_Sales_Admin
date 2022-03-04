@@ -84,14 +84,14 @@ const StaffList = () => {
   return (
     <section className="section-staff-list grid-data">
       <div className="container">
-        <p className="title">Nhân viên</p>
+        <p className="title text-uppercase">Nhân viên</p>
         <Link to="/staffs/add-staff" className="btn btn-primary">
           Thêm
         </Link>
         <Search setSearch={setSearch} placeholder="nhân viên" />
         {dataShow ? (
           <Paper sx={{ width: "100%" }}>
-            <TableContainer sx={{ maxHeight: 440 }}>
+            <TableContainer sx={{  }}>
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                   <TableRow>
@@ -99,7 +99,7 @@ const StaffList = () => {
                       <TableCell
                         key={column.id}
                         align={column.align}
-                        style={{ minWidth: column.minWidth }}
+                        style={{ minWidth: column.minWidth, backgroundColor: '#022d42', color: 'white' }}
                       >
                         {column.label}
                       </TableCell>
@@ -107,13 +107,14 @@ const StaffList = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {dataShow.map((row) => {
+                  {dataShow.map((row, index) => {
                     return (
                       <TableRow
                         hover
                         role="checkbox"
                         tabIndex={-1}
                         key={row._id}
+                        style={{ backgroundColor: index % 2 === 0 ? 'rgba(0, 0, 0, 0.04)' : 'white' }}
                       >
                         {columns.map((column) => {
                           let value = row[column.id];
