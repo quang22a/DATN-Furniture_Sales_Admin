@@ -90,7 +90,7 @@ const CustomerList = () => {
   return (
     <section className="section-category-list grid-data">
       <div className="container">
-        <p className="title text-uppercase">Khách hàng</p>
+        <p className="title text-uppercase">Thành viên</p>
         <Search setSearch={setSearch} placeholder="khách hàng" />
         {dataShow ? (
           <Paper sx={{ width: "100%" }}>

@@ -149,7 +149,6 @@ const UpdateProduct = () => {
                     errors={errors.description}
                     id="description"
                     defaultValue={productDetail.description}
-                    errors={errors.description}
                     para=""
                   />
                 </div>

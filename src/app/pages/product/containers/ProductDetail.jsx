@@ -36,9 +36,6 @@ const ProductDetail = () => {
     };
     getData();
   }, []);
-  useEffect(() => {
-    console.log(listRatings);
-  }, [listRatings]);
 
   return (
     <section className="section-product-detail">

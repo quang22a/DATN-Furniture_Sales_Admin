@@ -30,7 +30,7 @@ const CustomerDetail = () => {
   return (
     <section className="section-profile section-detail">
       <div className="container">
-        <p className="title-profile text-uppercase">Thông tin khách hàng</p>
+        <p className="title-profile text-uppercase">Thông tin thành viên</p>
         {customerDetail && isData ? (
           <div className="profile">
             <div className="form-row form-detail">

@@ -13,18 +13,15 @@ const status = {
 const BilDetail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const [dataProducts, setDataProducts] = useState();
 
   const bill = useSelector((state) => state.billReducer.bill);
   const listProduct = useSelector((state) => state.billReducer.listProductBill);
-
-  const label = { inputProps: { "aria-label": "Switch demo" } };
 
   useEffect(() => {
     dispatch(getDetailBill(id));
     dispatch(getProductOfBill(id));
   }, []);
-  console.log(bill, listProduct);
+
   return (
     <section className="section-bill-detail">
       <div className="container">
@@ -54,7 +51,7 @@ const BilDetail = () => {
           </div>
           <div className="bill-info">
             <span className="left">Tổng tiền</span>
-            <span className="right">{formatPrice(bill?.totalPrice)}</span>
+            <span className="right">{formatPrice(bill?.totalPrice || 0)}</span>
           </div>
           <div className="bill-info">
             <span className="left">Phương thức thanh toán</span>

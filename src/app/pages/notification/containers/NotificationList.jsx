@@ -9,13 +9,11 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Switch from "@mui/material/Switch";
 import Pagination from "@mui/material/Pagination";
 
 import { Search } from "../../../shared/components/search";
 import {
   getListNotification,
-  editNotification,
   deleteNotification,
 } from "../stores/action";
 import { convertDate } from "../../../shared/helpers/utils/convertDate";

@@ -14,7 +14,6 @@ const SideBar = () => {
       socket.emit("client-create-bill", "");
     });
     socket.on("server-notification-new-bill", (data) => {
-      console.log(data);
       setQuantityNewBill(parseInt(data));
     });
   }, []);
@@ -91,7 +90,7 @@ const SideBar = () => {
         >
           <i className="fas fa-user"></i>
           <Link to="/customers" className="btn btn-outline">
-            Khách hàng
+            Thành viên
           </Link>
         </div>
         <div
