@@ -1,6 +1,7 @@
 import * as types from "./types";
 import { ApiService } from "../../../core/services/api.service";
 import { ENDPOINT } from "../../../../config/endpoint";
+import { setModal } from "../../../stores/modal/action";
 
 const http = new ApiService();
 
@@ -24,13 +25,21 @@ export const addCustomer = (data) => async (dispatch) => {
   }
 };
 
-export const updateCustomer = (id, data) => async (dispatch) => {
+export const updateCustomer = (id, data, navigate) => async (dispatch) => {
   try {
     const response = await http.put([ENDPOINT.customer.list, id], data);
     dispatch({
       type: types.UPDATE_CUSTOMER_SUCCESS,
       payload: response,
     });
+    dispatch(
+      setModal({
+        key: "snapback",
+        title: "",
+        content: "Sửa thông tin thành viên thành công",
+      })
+    );
+    navigate(`/customers/${id}`);
   } catch (error) {
     dispatch({
       type: types.UPDATE_CUSTOMER_FAIL,

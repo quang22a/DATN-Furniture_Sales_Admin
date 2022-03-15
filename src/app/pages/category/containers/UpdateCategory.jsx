@@ -1,27 +1,22 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
-import { useParams } from "react-router";
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router';
+import { useParams } from 'react-router';
 
-import { setModal } from "../../../stores/modal/action";
-import { getDetailCategory, editCategory } from "../stores/action";
-import { Input } from "../../../shared/components/partials/Input";
-import { storage } from "../../../core/services/firebase.service";
-import Switch from "@mui/material/Switch";
+import { getDetailCategory, editCategory } from '../stores/action';
+import { Input } from '../../../shared/components/partials/Input';
+import { storage } from '../../../core/services/firebase.service';
+import Switch from '@mui/material/Switch';
 
 const UpdateCategory = () => {
   const {
     register,
-    watch,
-    control,
-    setValue,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const [image, setImage] = useState(null);
   const [isTrending, setIsTrending] = useState(false);
-  const [isSubmit, setIsSubmit] = useState(false);
   const [isData, setIsData] = useState(false);
   const { id } = useParams();
 
@@ -31,8 +26,7 @@ const UpdateCategory = () => {
   const categoryDetail = useSelector(
     (state) => state.categoryReducer.dataDetail
   );
-  const error = useSelector((state) => state.categoryReducer.errorGetDetail);
-  const label = { inputProps: { "aria-label": "Switch demo" } };
+  const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
   useEffect(() => {
     const getData = async () => {
@@ -55,99 +49,88 @@ const UpdateCategory = () => {
         .ref(`images-category/${e.target.files[0].name}`)
         .put(e.target.files[0]);
       upImage.on(
-        "state_changed",
+        'state_changed',
         (snapshot) => {},
         (error) => {
           console.log(error);
         },
         () => {
           storage
-            .ref("images-category")
+            .ref('images-category')
             .child(e.target.files[0].name)
             .getDownloadURL()
             .then((url) => setImage(url))
-            .catch((error) => console.log("error:", error));
+            .catch((error) => console.log('error:', error));
         }
       );
     }
   };
 
   const onSubmit = async (data) => {
-    await dispatch(
-      editCategory(categoryDetail?._id, { ...data, image, isTrending })
+    dispatch(
+      editCategory(
+        categoryDetail?._id,
+        { ...data, image, isTrending },
+        navigate
+      )
     );
-    setIsSubmit(true);
   };
 
-  useEffect(() => {
-    if (!error && isSubmit) {
-      dispatch(
-        setModal({
-          key: "snapback",
-          title: "",
-          content: "Sửa thông tin danh mục thành công",
-        })
-      );
-      navigate(`/categories/${id}`);
-    }
-    setIsSubmit(false);
-  }, [isSubmit]);
-
   return (
-    <section className="section-product-detail">
-      <div className="container">
-        <p className="title text-uppercase">Sửa thông tin danh mục</p>
+    <section className='section-product-detail'>
+      <div className='container'>
+        <p className='title text-uppercase'>Sửa thông tin danh mục</p>
         {categoryDetail && isData ? (
           <form
-            className="product-detail row"
+            className='product-detail row'
             onSubmit={handleSubmit(onSubmit)}
           >
-            <div className="col-6 product-detail-img">
+            <div className='col-6 product-detail-img'>
               <img src={image} alt={categoryDetail?.name} />
               <Input
-                type="file"
-                className="form-control"
-                label=""
-                placeholder=""
-                id="image"
+                type='file'
+                className='form-control'
+                label=''
+                placeholder=''
+                id='image'
                 onChange={uploadImage}
-                para=""
+                para=''
               />
             </div>
-            <div className="col-6">
-              <div className="form-row">
+            <div className='col-6'>
+              <div className='form-row'>
                 <Input
-                  type="text"
-                  className="form-control"
-                  label="Tên"
-                  placeholder="Nhập tên danh mục"
-                  id="name"
-                  validate={register("name", {
-                    required: "Bạn phải nhập tên danh mục",
+                  type='text'
+                  className='form-control'
+                  label='Tên'
+                  placeholder='Nhập tên danh mục'
+                  id='name'
+                  validate={register('name', {
+                    required: 'Bạn phải nhập tên danh mục',
                   })}
                   defaultValue={categoryDetail?.name}
                   errors={errors.name}
-                  para=""
+                  para=''
                 />
               </div>
-              <div className="form-row">
-                <label htmlFor="">Nổi bật</label>
+              <div className='form-row'>
+                <label htmlFor=''>Nổi bật</label>
                 <Switch
                   {...label}
-                  style={{ textAlign: "center" }}
+                  style={{ textAlign: 'center' }}
                   checked={isTrending}
                   onChange={() => {
                     setIsTrending(!isTrending);
                   }}
                 />
               </div>
-              <div className="action-edit">
-                <button type="submit" className="btn btn-primary">
+              <div className='action-edit'>
+                <button type='submit' className='btn btn-primary'>
                   Lưu
                 </button>
                 <button
-                  type="button"
-                  className="btn btn-black"
+                  type='button'
+                  className='btn btn-black'
                   onClick={() => navigate(-1)}
                 >
                   Quay lại
@@ -156,7 +139,7 @@ const UpdateCategory = () => {
             </div>
           </form>
         ) : (
-          ""
+          ''
         )}
       </div>
     </section>

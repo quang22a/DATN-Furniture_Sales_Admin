@@ -1,11 +1,11 @@
-import * as types from "./types";
-import { ApiService } from "../../../core/services/api.service";
-import { ENDPOINT } from "../../../../config/endpoint";
-import { setModal } from "../../../stores/modal/action";
+import * as types from './types';
+import { ApiService } from '../../../core/services/api.service';
+import { ENDPOINT } from '../../../../config/endpoint';
+import { setModal } from '../../../stores/modal/action';
 
 const http = new ApiService();
 
-export const addStaff = (data) => async (dispatch) => {
+export const addStaff = (data, navigate) => async (dispatch) => {
   try {
     const response = await http.post([ENDPOINT.auth.registerStaff], data);
     dispatch({
@@ -14,11 +14,12 @@ export const addStaff = (data) => async (dispatch) => {
     });
     dispatch(
       setModal({
-        key: "snapback",
-        title: "",
-        content: "Thêm thành công",
+        key: 'snapback',
+        title: '',
+        content: 'Thêm thành công',
       })
     );
+    navigate('/staffs');
   } catch (error) {
     console.log(error);
     dispatch({
@@ -33,13 +34,21 @@ export const addStaff = (data) => async (dispatch) => {
   }
 };
 
-export const updateStaff = (id, data) => async (dispatch) => {
+export const updateStaff = (id, data, navigate) => async (dispatch) => {
   try {
     const response = await http.put([ENDPOINT.staff.list, id], data);
     dispatch({
       type: types.UPDATE_STAFF_SUCCESS,
       payload: response,
     });
+    dispatch(
+      setModal({
+        key: 'snapback',
+        title: '',
+        content: 'Sửa thông tin nhân viên thành công',
+      })
+    );
+    navigate(`/staffs/${id}`);
   } catch (error) {
     dispatch({
       type: types.UPDATE_STAFF_FAIL,
@@ -79,7 +88,7 @@ export const getListStaff =
     try {
       const response = await http.get([
         `${ENDPOINT.staff.list}?page=${page}${
-          search ? `&search=${search}` : ""
+          search ? `&search=${search}` : ''
         }`,
       ]);
       dispatch({

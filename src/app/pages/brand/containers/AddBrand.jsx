@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 
-import { setModal } from "../../../stores/modal/action";
 import { addBrand } from "../stores/action";
 import { Input } from "../../../shared/components/partials/Input";
 import { storage } from "../../../core/services/firebase.service";
@@ -17,34 +16,16 @@ const AddBrand = () => {
     handleSubmit,
   } = useForm();
   const [image, setImage] = useState(null);
-  const [isSubmit, setIsSubmit] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const error = useSelector((state) => state.brandReducer.errorAdd);
-
-  const onSubmit = async (data) => {
+  const onSubmit = (data) => {
     const dataAdd = {
       ...data,
       image,
     };
-    await dispatch(addBrand(dataAdd));
-    setIsSubmit(true);
+    dispatch(addBrand(dataAdd, navigate));
   };
-
-  useEffect(() => {
-    if (!error && isSubmit) {
-      dispatch(
-        setModal({
-          key: "snapback",
-          title: "",
-          content: "Thêm thành công",
-        })
-      );
-      navigate("/brands");
-    }
-    setIsSubmit(false);
-  }, [isSubmit]);
 
   const uploadImage = (e) => {
     if (e.target.files[0]) {

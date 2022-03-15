@@ -1,4 +1,6 @@
 export const ENV = {
-  // apiBaseUrl: "http://localhost:8000/api/v1",
-  apiBaseUrl: "https://datn-be.herokuapp.com/api/v1",
+  apiBaseUrl:
+    window.location.href.indexOf('localhost:9900') !== -1
+      ? 'http://localhost:8000/api/v1'
+      : 'https://datn-be.herokuapp.com/api/v1',
 };

@@ -1,16 +1,25 @@
-import * as types from "./types";
-import { ApiService } from "../../../core/services/api.service";
-import { ENDPOINT } from "../../../../config/endpoint";
+import * as types from './types';
+import { ApiService } from '../../../core/services/api.service';
+import { ENDPOINT } from '../../../../config/endpoint';
+import { setModal } from '../../../stores/modal/action';
 
 const http = new ApiService();
 
-export const addNotification = (data) => async (dispatch) => {
+export const addNotification = (data, navigate) => async (dispatch) => {
   try {
     const response = await http.post([ENDPOINT.notification.index], data);
     dispatch({
       type: types.ADD_NOTIFICATION_SUCCESS,
       payload: response,
     });
+    dispatch(
+      setModal({
+        key: 'snapback',
+        title: '',
+        content: 'Thêm thông báo thành công',
+      })
+    );
+    navigate('/notifications');
   } catch (error) {
     dispatch({
       type: types.ADD_NOTIFICATION_FAIL,
@@ -24,13 +33,21 @@ export const addNotification = (data) => async (dispatch) => {
   }
 };
 
-export const editNotification = (id, data) => async (dispatch) => {
+export const editNotification = (id, data, navigate) => async (dispatch) => {
   try {
     const response = await http.put([ENDPOINT.notification.list, id], data);
     dispatch({
       type: types.EDIT_NOTIFICATION_SUCCESS,
       payload: response,
     });
+    dispatch(
+      setModal({
+        key: 'snapback',
+        title: '',
+        content: 'Sửa thông báo thành công',
+      })
+    );
+    navigate(`/notifications/${id}`);
   } catch (error) {
     dispatch({
       type: types.EDIT_NOTIFICATION_FAIL,
@@ -70,7 +87,7 @@ export const getListNotification =
     try {
       const response = await http.get([
         `${ENDPOINT.notification.list}-admin?page=${page}${
-          search ? `&search=${search}` : ""
+          search ? `&search=${search}` : ''
         }`,
       ]);
       dispatch({

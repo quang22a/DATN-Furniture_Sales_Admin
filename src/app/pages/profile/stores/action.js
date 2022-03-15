@@ -1,7 +1,7 @@
-import * as types from "./types";
-import { ApiService } from "../../../core/services/api.service";
-import { ENDPOINT } from "../../../../config/endpoint";
-import { setModal } from "../../../stores/modal/action";
+import * as types from './types';
+import { ApiService } from '../../../core/services/api.service';
+import { ENDPOINT } from '../../../../config/endpoint';
+import { setModal } from '../../../stores/modal/action';
 
 const http = new ApiService();
 
@@ -25,7 +25,7 @@ export const getProfile = () => async (dispatch) => {
   }
 };
 
-export const updateProfile = (data) => async (dispatch) => {
+export const updateProfile = (data, navigate) => async (dispatch) => {
   try {
     const response = await http.put([ENDPOINT.auth.profile], data);
     dispatch({
@@ -34,11 +34,12 @@ export const updateProfile = (data) => async (dispatch) => {
     });
     dispatch(
       setModal({
-        key: "snapback",
-        title: "",
-        content: "Cập nhật thông tin cá nhân thành công",
+        key: 'snapback',
+        title: '',
+        content: 'Cập nhật thông tin cá nhân thành công',
       })
     );
+    navigate('/profile');
   } catch (error) {
     dispatch({
       type: types.UPDATE_PROFILE_FAIL,
@@ -52,7 +53,7 @@ export const updateProfile = (data) => async (dispatch) => {
   }
 };
 
-export const updatePassword = (data) => async (dispatch) => {
+export const updatePassword = (data, navigate) => async (dispatch) => {
   try {
     const response = await http.put([ENDPOINT.auth.updatePassword], data);
     dispatch({
@@ -61,11 +62,12 @@ export const updatePassword = (data) => async (dispatch) => {
     });
     dispatch(
       setModal({
-        key: "snapback",
-        title: "",
-        content: "Đổi mật khẩu thành công",
+        key: 'snapback',
+        title: '',
+        content: 'Đổi mật khẩu thành công',
       })
     );
+    navigate('/profile');
   } catch (error) {
     dispatch({
       type: types.UPDATE_PASSWORD_FAIL,

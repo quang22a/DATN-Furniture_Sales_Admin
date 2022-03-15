@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { useParams } from "react-router";
 
-import { setModal } from "../../../stores/modal/action";
 import { getDetailBrand, editBrand } from "../stores/action";
 import { Input } from "../../../shared/components/partials/Input";
 import { storage } from "../../../core/services/firebase.service";
@@ -18,7 +17,6 @@ const UpdateBrand = () => {
   } = useForm();
   const [image, setImage] = useState(null);
   const [isFeatured, setIsFeatured] = useState(false);
-  const [isSubmit, setIsSubmit] = useState(false);
   const [isData, setIsData] = useState(false);
   const { id } = useParams();
 
@@ -26,7 +24,6 @@ const UpdateBrand = () => {
   const navigate = useNavigate();
 
   const brandDetail = useSelector((state) => state.brandReducer.dataDetail);
-  const error = useSelector((state) => state.brandReducer.errorGetDetail);
   const label = { inputProps: { "aria-label": "Switch demo" } };
 
   useEffect(() => {
@@ -67,24 +64,9 @@ const UpdateBrand = () => {
     }
   };
 
-  const onSubmit = async (data) => {
-    await dispatch(editBrand(brandDetail?._id, { ...data, image, isFeatured }));
-    setIsSubmit(true);
+  const onSubmit = (data) => {
+    dispatch(editBrand(brandDetail?._id, { ...data, image, isFeatured }, navigate));
   };
-
-  useEffect(() => {
-    if (!error && isSubmit) {
-      dispatch(
-        setModal({
-          key: "snapback",
-          title: "",
-          content: "Sửa thông tin thương hiệu thành công",
-        })
-      );
-      navigate(`/brands/${id}`);
-    }
-    setIsSubmit(false);
-  }, [isSubmit]);
 
   return (
     <section className="section-product-detail">

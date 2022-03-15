@@ -1,7 +1,7 @@
-import * as types from "./types";
-import { ApiService } from "../../../core/services/api.service";
-import { ENDPOINT } from "../../../../config/endpoint";
-import { setModal } from "../../../stores/modal/action";
+import * as types from './types';
+import { ApiService } from '../../../core/services/api.service';
+import { ENDPOINT } from '../../../../config/endpoint';
+import { setModal } from '../../../stores/modal/action';
 
 const http = new ApiService();
 
@@ -14,12 +14,12 @@ export const addProduct = (data, navigate) => async (dispatch) => {
     });
     dispatch(
       setModal({
-        key: "snapback",
-        title: "",
-        content: "Thêm thành công",
+        key: 'snapback',
+        title: '',
+        content: 'Thêm thành công',
       })
     );
-    navigate("/products");
+    navigate('/products');
   } catch (error) {
     dispatch({
       type: types.ADD_NEW_PRODUCT_FAIL,
@@ -33,13 +33,21 @@ export const addProduct = (data, navigate) => async (dispatch) => {
   }
 };
 
-export const editProduct = (id, data) => async (dispatch) => {
+export const editProduct = (id, data, navigate) => async (dispatch) => {
   try {
     const response = await http.put([ENDPOINT.product.list, id], data);
     dispatch({
       type: types.EDIT_PRODUCT_SUCCESS,
       payload: response,
     });
+    dispatch(
+      setModal({
+        key: 'snapback',
+        title: '',
+        content: 'Sửa thông tin sản phẩm thành công',
+      })
+    );
+    navigate(`/products/${id}`);
   } catch (error) {
     dispatch({
       type: types.EDIT_PRODUCT_FAIL,
@@ -79,7 +87,7 @@ export const getListProduct =
     try {
       const response = await http.get([
         `${ENDPOINT.product.list}?page=${page}${
-          search ? `&search=${search}` : ""
+          search ? `&search=${search}` : ''
         }`,
       ]);
       dispatch({

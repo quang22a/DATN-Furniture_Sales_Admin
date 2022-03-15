@@ -1,23 +1,18 @@
-import Login from "./containers/Login";
-import ForgotPassword from "./containers/ForgotPassword";
-import Auth from "./index";
+import Login from './containers/Login';
+import Auth from './index';
 
 const authRoutes = [
   {
-    path: "/auth",
+    path: '/auth',
     element: Auth,
     children: [
       {
-        path: "",
-        redirect: "login",
+        path: '',
+        redirect: 'login',
       },
       {
-        path: "login",
+        path: 'login',
         element: Login,
-      },
-      {
-        path: "forgot-password",
-        element: ForgotPassword,
       },
     ],
   },

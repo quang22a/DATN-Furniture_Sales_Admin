@@ -1,13 +1,12 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
-import { useParams } from "react-router";
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router';
+import { useParams } from 'react-router';
 
-import { setModal } from "../../../stores/modal/action";
-import { getDetailNotification, editNotification } from "../stores/action";
-import { Input } from "../../../shared/components/partials/Input";
-import { storage } from "../../../core/services/firebase.service";
+import { getDetailNotification, editNotification } from '../stores/action';
+import { Input } from '../../../shared/components/partials/Input';
+import { storage } from '../../../core/services/firebase.service';
 
 const NotificationDetail = () => {
   const {
@@ -16,7 +15,6 @@ const NotificationDetail = () => {
     formState: { errors },
   } = useForm();
   const [image, setImage] = useState(null);
-  const [isSubmit, setIsSubmit] = useState(false);
   const [isData, setIsData] = useState(false);
   const { id } = useParams();
 
@@ -25,9 +23,6 @@ const NotificationDetail = () => {
 
   const notificationDetail = useSelector(
     (state) => state.notificationReducer.dataDetail
-  );
-  const error = useSelector(
-    (state) => state.notificationReducer.errorGetDetail
   );
 
   useEffect(() => {
@@ -50,103 +45,88 @@ const NotificationDetail = () => {
         .ref(`images-notification/${e.target.files[0].name}`)
         .put(e.target.files[0]);
       upImage.on(
-        "state_changed",
+        'state_changed',
         (snapshot) => {},
         (error) => {
           console.log(error);
         },
         () => {
           storage
-            .ref("images-notification")
+            .ref('images-notification')
             .child(e.target.files[0].name)
             .getDownloadURL()
             .then((url) => setImage(url))
-            .catch((error) => console.log("error:", error));
+            .catch((error) => console.log('error:', error));
         }
       );
     }
   };
 
-  const onSubmit = async (data) => {
-    await dispatch(
-      editNotification(notificationDetail?._id, { ...data, image })
+  const onSubmit = (data) => {
+    dispatch(
+      editNotification(notificationDetail?._id, { ...data, image }, navigate)
     );
-    setIsSubmit(true);
   };
 
-  useEffect(() => {
-    if (!error && isSubmit) {
-      dispatch(
-        setModal({
-          key: "snapback",
-          title: "",
-          content: "Sửa thông báo thành công",
-        })
-      );
-      navigate(`/notifications/${id}`);
-    }
-    setIsSubmit(false);
-  }, [isSubmit]);
-
   return (
-    <section className="section-product-detail">
-      <div className="container">
-        <p className="title text-uppercase">Sửa thông báo</p>
+    <section className='section-product-detail'>
+      <div className='container'>
+        <p className='title text-uppercase'>Sửa thông báo</p>
         {notificationDetail && isData ? (
           <form
-            className="product-detail row"
+            className='product-detail row'
             onSubmit={handleSubmit(onSubmit)}
           >
-            <div className="col-6 product-detail-img">
+            <div className='col-6 product-detail-img'>
               <img src={image} alt={notificationDetail?.name} />
               <Input
-                type="file"
-                className="form-control"
-                label=""
-                placeholder=""
-                id="image"
+                type='file'
+                className='form-control'
+                label=''
+                placeholder=''
+                id='image'
                 onChange={uploadImage}
-                para=""
+                para=''
               />
             </div>
-            <div className="col-6">
-              <div className="form-row">
+            <div className='col-6'>
+              <div className='form-row'>
                 <Input
-                  type="text"
-                  className="form-control"
-                  label="Tiêu đề"
-                  placeholder="Nhập tiêu đề"
-                  id="title"
-                  validate={register("title", {
-                    required: "Bạn phải nhập tiêu đề",
+                  type='text'
+                  className='form-control'
+                  label='Tiêu đề'
+                  placeholder='Nhập tiêu đề'
+                  id='title'
+                  validate={register('title', {
+                    required: 'Bạn phải nhập tiêu đề',
                   })}
                   defaultValue={notificationDetail?.title}
                   errors={errors.title}
-                  para=""
+                  para=''
                 />
               </div>
-              <div className="form-row">
+              <div className='form-row'>
                 <Input
-                  type="text"
-                  className="form-control"
-                  label="Nội dung"
-                  placeholder="Nhập nội dung"
-                  id="content"
-                  validate={register("content", {
-                    required: "Bạn phải nhập nội dung",
+                  type='text'
+                  className='form-control'
+                  label='Nội dung'
+                  placeholder='Nhập nội dung'
+                  id='content'
+                  validate={register('content', {
+                    required: 'Bạn phải nhập nội dung',
                   })}
                   defaultValue={notificationDetail?.content}
                   errors={errors.content}
-                  para=""
+                  para=''
                 />
               </div>
-              <div className="action-edit">
-                <button type="submit" className="btn btn-primary">
+              <div className='action-edit'>
+                <button type='submit' className='btn btn-primary'>
                   Lưu
                 </button>
                 <button
-                  type="button"
-                  className="btn btn-black"
+                  type='button'
+                  className='btn btn-black'
                   onClick={() => navigate(-1)}
                 >
                   Quay lại
@@ -155,7 +135,7 @@ const NotificationDetail = () => {
             </div>
           </form>
         ) : (
-          ""
+          ''
         )}
       </div>
     </section>
