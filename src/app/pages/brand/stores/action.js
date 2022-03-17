@@ -40,14 +40,16 @@ export const editBrand = (id, data, navigate) => async (dispatch) => {
       type: types.EDIT_BRAND_SUCCESS,
       payload: response,
     });
-    dispatch(
-      setModal({
-        key: 'snapback',
-        title: '',
-        content: 'Sửa thông tin thương hiệu thành công',
-      })
-    );
-    navigate(`/brands/${id}`);
+    if (navigate) {
+      dispatch(
+        setModal({
+          key: 'snapback',
+          title: '',
+          content: 'Sửa thông tin thương hiệu thành công',
+        })
+      );
+      navigate(`/brands/${id}`);
+    }
   } catch (error) {
     dispatch({
       type: types.EDIT_BRAND_FAIL,

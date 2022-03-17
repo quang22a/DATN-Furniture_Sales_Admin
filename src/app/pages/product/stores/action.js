@@ -40,14 +40,16 @@ export const editProduct = (id, data, navigate) => async (dispatch) => {
       type: types.EDIT_PRODUCT_SUCCESS,
       payload: response,
     });
-    dispatch(
-      setModal({
-        key: 'snapback',
-        title: '',
-        content: 'Sửa thông tin sản phẩm thành công',
-      })
-    );
-    navigate(`/products/${id}`);
+    if (navigate) {
+      dispatch(
+        setModal({
+          key: 'snapback',
+          title: '',
+          content: 'Sửa thông tin sản phẩm thành công',
+        })
+      );
+      navigate(`/products/${id}`);
+    }
   } catch (error) {
     dispatch({
       type: types.EDIT_PRODUCT_FAIL,

@@ -40,14 +40,16 @@ export const editCategory = (id, data, navigate) => async (dispatch) => {
       type: types.EDIT_CATEGORY_SUCCESS,
       payload: response,
     });
-    dispatch(
-      setModal({
-        key: 'snapback',
-        title: '',
-        content: 'Sửa thông tin danh mục thành công',
-      })
-    );
-    navigate(`/categories/${id}`);
+    if (navigate) {
+      dispatch(
+        setModal({
+          key: 'snapback',
+          title: '',
+          content: 'Sửa thông tin danh mục thành công',
+        })
+      );
+      navigate(`/categories/${id}`);
+    }
   } catch (error) {
     dispatch({
       type: types.EDIT_CATEGORY_FAIL,

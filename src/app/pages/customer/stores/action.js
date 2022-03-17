@@ -1,7 +1,7 @@
-import * as types from "./types";
-import { ApiService } from "../../../core/services/api.service";
-import { ENDPOINT } from "../../../../config/endpoint";
-import { setModal } from "../../../stores/modal/action";
+import * as types from './types';
+import { ApiService } from '../../../core/services/api.service';
+import { ENDPOINT } from '../../../../config/endpoint';
+import { setModal } from '../../../stores/modal/action';
 
 const http = new ApiService();
 
@@ -32,14 +32,16 @@ export const updateCustomer = (id, data, navigate) => async (dispatch) => {
       type: types.UPDATE_CUSTOMER_SUCCESS,
       payload: response,
     });
-    dispatch(
-      setModal({
-        key: "snapback",
-        title: "",
-        content: "Sửa thông tin thành viên thành công",
-      })
-    );
-    navigate(`/customers/${id}`);
+    if (navigate) {
+      dispatch(
+        setModal({
+          key: 'snapback',
+          title: '',
+          content: 'Sửa thông tin thành viên thành công',
+        })
+      );
+      navigate(`/customers/${id}`);
+    }
   } catch (error) {
     dispatch({
       type: types.UPDATE_CUSTOMER_FAIL,
@@ -79,7 +81,7 @@ export const getListCustomer =
     try {
       const response = await http.get([
         `${ENDPOINT.customer.list}?page=${page}${
-          search ? `&search=${search}` : ""
+          search ? `&search=${search}` : ''
         }`,
       ]);
       dispatch({

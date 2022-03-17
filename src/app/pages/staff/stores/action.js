@@ -41,14 +41,16 @@ export const updateStaff = (id, data, navigate) => async (dispatch) => {
       type: types.UPDATE_STAFF_SUCCESS,
       payload: response,
     });
-    dispatch(
-      setModal({
-        key: 'snapback',
-        title: '',
-        content: 'Sửa thông tin nhân viên thành công',
-      })
-    );
-    navigate(`/staffs/${id}`);
+    if (navigate) {
+      dispatch(
+        setModal({
+          key: 'snapback',
+          title: '',
+          content: 'Sửa thông tin nhân viên thành công',
+        })
+      );
+      navigate(`/staffs/${id}`);
+    }
   } catch (error) {
     dispatch({
       type: types.UPDATE_STAFF_FAIL,
